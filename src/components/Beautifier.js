@@ -32,20 +32,20 @@ const Beautifier = ({ file }) => {
 
   return (
     <Container className="mt-3">
-      <Button variant="primary" onClick={beautifyXLF}>
-        Beautify XLF
-      </Button>
+      <Container className="d-flex justify-content-center">
+        <Button className="w-25" variant="success" onClick={beautifyXLF}>
+          Beautify XLF
+        </Button>
+      </Container>
       {error && <Alert variant="danger">{error}</Alert>}
       {beautifiedContent && (
-        <Card className="mt-3">
+        <Card className="mt-3 bg-dark text-white">
           <Card.Body style={{ maxHeight: '500px', overflowY: 'auto' }}>
             <pre style={{ fontSize: '12px' }}>{beautifiedContent}</pre>
           </Card.Body>
-          <Card.Footer>
-            <Button variant="secondary" onClick={copyToClipboard}>
-              Copy to Clipboard
-            </Button>
-          </Card.Footer>
+          <Button variant="secondary" onClick={copyToClipboard}>
+            Copy to Clipboard
+          </Button>
         </Card>
       )}
     </Container>

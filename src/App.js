@@ -21,7 +21,8 @@ const App = () => {
 
   return (
     <Container className="mt-5">
-      <h1>Epic XLF Beautifier</h1>
+      <h1 className="text-center">&#128537; epic XLF beautifier</h1>
+      <p className="text-center text-secondary">johnrey x chatGPT</p>
       <FileUploader onFileUploaded={handleFileUploaded} onError={handleOnError} />
       {selectedFile && !error && <Beautifier file={selectedFile} />}
     </Container>

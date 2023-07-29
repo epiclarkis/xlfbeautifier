@@ -17,9 +17,9 @@ const FileUploader = ({ onFileUploaded, onError }) => {
   };
 
   return (
-    <div>
-      <input type="file" onChange={handleFileChange} />
-      {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+    <div className="mt-5 w-50 mx-auto">
+      <input type="file" class="form-control " onChange={handleFileChange} />
+      {errorMessage && <Alert className="mt-3" variant="danger">{errorMessage}</Alert>}
     </div>
   );
 };
