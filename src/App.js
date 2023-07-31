@@ -23,7 +23,8 @@ const App = () => {
     <Container className="mt-5">
       <h1 className="text-center">&#128537; epic XLF beautifier</h1>
       <p className="text-center text-secondary fw-light">
-        Verily, the grace of code abides in its readability.
+        <span className="text-primary">Verily, the grace of code abides in its readability.</span> <br />
+        <small className="sw-lighter fst-italic">johnrey x ChatGPT</small>
       </p>
       <FileUploader onFileUploaded={handleFileUploaded} onError={handleOnError} />
       {selectedFile && !error && <Beautifier file={selectedFile} />}
