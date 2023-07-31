@@ -43,7 +43,7 @@ const Beautifier = ({ file }) => {
   };
 
   return (
-    <Container className="mt-3">
+    <Container className="mt-2">
       <Container className="d-flex justify-content-center">
       {isButtonVisible && (
         <Button className="w-100 btn" variant="outline-primary" onClick={beautifyXLF}>
@@ -52,7 +52,7 @@ const Beautifier = ({ file }) => {
       )}
       </Container>
       {beautifiedContent && (
-        <Container className="d-flex justify-content-center mb-3">
+        <Container className="d-flex justify-content-center mb-2">
           <Button variant={isCopied ? "outline-secondary" : "outline-success"} className="w-100" onClick={copyToClipboard}>
             {isCopied ? 'Boom! Copied' : 'Copy to Clipboard'}
           </Button>

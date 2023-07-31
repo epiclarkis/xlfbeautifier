@@ -18,6 +18,7 @@ const FileUploader = ({ onFileUploaded, onError }) => {
   return (
     <div className="mt-5 px-4 w-100 mx-auto">
       <input type="file" class="form-control " onChange={handleFileChange} />
+      <small className="mt-1 text-secondary fst-italic">The process is done on the browser only (locally). Your file is never stored or transmitted to a remote server.</small>
       {errorMessage && <Alert className="mt-3" variant="danger">{errorMessage}</Alert>}
     </div>
   );
