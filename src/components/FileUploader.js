@@ -1,6 +1,5 @@
-// FileUploader.js
 import React, { useState } from 'react';
-import { Button, Alert } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 
 const FileUploader = ({ onFileUploaded, onError }) => {
   const [errorMessage, setErrorMessage] = useState('');
@@ -17,7 +16,7 @@ const FileUploader = ({ onFileUploaded, onError }) => {
   };
 
   return (
-    <div className="mt-5 w-50 mx-auto">
+    <div className="mt-5 px-4 w-100 mx-auto">
       <input type="file" class="form-control " onChange={handleFileChange} />
       {errorMessage && <Alert className="mt-3" variant="danger">{errorMessage}</Alert>}
     </div>
