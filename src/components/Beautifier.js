@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Alert, Container } from 'react-bootstrap';
+import { Alert, Container } from 'react-bootstrap';
 import xmlFormatter from 'xml-formatter';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -9,29 +9,30 @@ const Beautifier = ({ file }) => {
   const [error, setError] = useState(null);
   const [isButtonVisible, setButtonVisibility] = useState(true);
   const [isCopied, setCopied] = useState(false);
+
   const resetContent = () => {
-    window.location.reload();
     setBeautifiedContent('');
     setError(null);
     setButtonVisibility(true);
-    setCopied(false);    
+    setCopied(false);
   };
 
   const beautifyXLF = () => {
+
     const reader = new FileReader();
     reader.onloadend = () => {
       try {
         const xmlContent = reader.result;
         const formattedXML = xmlFormatter(xmlContent, { 
           indentation: '  ',
-          collapseContent: true,
+          collapseContent: true
         });
         setBeautifiedContent(formattedXML);
         setError(null);
         setButtonVisibility(false);
-      } catch (err) {
+      } catch (error) {
         setBeautifiedContent('');
-        setError('Error beautifying the .xlf file.');
+        setError(`File Error: ${error.message}.`);
       }
     };
     reader.readAsText(file);
@@ -43,36 +44,46 @@ const Beautifier = ({ file }) => {
   };
 
   return (
-    <Container className="mt-2">
-      <Container className="d-flex justify-content-center">
-      {isButtonVisible && (
-        <Button className="w-100 btn" variant="outline-primary" onClick={beautifyXLF}>
-          Beautify XLF
-        </Button>
-      )}
+    <Container fluid="true" className='p-0 mb-4'>
+
+      <Container className='p-0'>
+        {isButtonVisible && (
+          <button className='btn btn-secondary w-25 mt-1' onClick={beautifyXLF}>
+            beautify XLF 1
+          </button>
+        )}
       </Container>
-      {beautifiedContent && (
-        <Container className="d-flex justify-content-center mb-2">
-          <Button variant={isCopied ? "outline-secondary" : "outline-success"} className="w-100" onClick={copyToClipboard}>
-            {isCopied ? 'Boom! Copied' : 'Copy to Clipboard'}
-          </Button>
-        </Container>
-      )}
+
       {error && <Alert variant="danger">{error}</Alert>}
+
+      <Container className='p-0 mt-1 mb-2'>
+        {beautifiedContent && (
+            <button className='btn btn-secondary w-25 me-3' onClick={resetContent}>
+              choose another file
+            </button>
+        )}
+        {beautifiedContent && (
+            <button className='btn btn-secondary w-25' onClick={copyToClipboard}>
+              {isCopied ? 'copied' : 'copy to clipboard'}
+            </button>
+        )}
+      </Container>
+
       {beautifiedContent && (
-        <Container style={{ maxHeight: '500px', overflowY: 'auto' }}>
-          <SyntaxHighlighter language="xml" style={atomDark}>
+        <Container className='p-0' style={{ maxHeight: '750px', overflowX: 'hidden', overflowY: 'auto' }}>
+          <SyntaxHighlighter
+            language="xml"
+            showLineNumbers
+            showInlineLineNumbers
+            startingLineNumber={1}
+            lineNumberContainerStyle={{ paddingRight: '20px' }}
+            lineNumberStyle={(lineNumber) => ({ color: 'gray' })} 
+            style={atomDark}>
             {beautifiedContent}
           </SyntaxHighlighter>
         </Container>
       )}
-      {beautifiedContent && (
-        <Container className="d-flex justify-content-center mt-3">
-          <Button variant="outline-danger" className="w-100" onClick={resetContent}>
-            Choose Another File
-          </Button>
-        </Container>
-      )}
+      
     </Container>
   );
 };

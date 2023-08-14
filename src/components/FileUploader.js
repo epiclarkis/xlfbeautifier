@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert } from 'react-bootstrap';
+import { Alert, Container } from 'react-bootstrap';
 
 const FileUploader = ({ onFileUploaded, onError }) => {
   const [errorMessage, setErrorMessage] = useState('');
@@ -16,11 +16,11 @@ const FileUploader = ({ onFileUploaded, onError }) => {
   };
 
   return (
-    <div className="mt-5 px-4 w-100 mx-auto">
-      <input type="file" class="form-control " onChange={handleFileChange} />
-      <small className="mt-1 text-secondary fst-italic">The process is done on the browser only (locally). Your file is never stored or transmitted to a remote server.</small>
-      {errorMessage && <Alert className="mt-3" variant="danger">{errorMessage}</Alert>}
-    </div>
+    <Container className='p-0'>
+      <input type="file" className="form-control" onChange={handleFileChange} />
+      <small className='fst-italic text-secondary'>tip: upload original XLF here</small>
+      {errorMessage && <Alert className='mt-3' variant="danger">{errorMessage}</Alert>}
+  </Container>
   );
 };
 
