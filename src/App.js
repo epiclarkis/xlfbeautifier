@@ -69,9 +69,9 @@ const App = () => {
 
       <nav className="navbar navbar-expand-lg bg-secondary sticky-top d-flex align-items-center justify-content-center">
         <h3 className="text-white me-3"><span className="mx-3">&#128537;</span>epic XLF beautifier</h3>
-        <small className='text-white fst-italic me-5'>by johnrey x ChatGPT</small>
         <button className='btn btn-outline-info me-3' onClick={beautifySingle}>single XLF file</button>
         <button className='btn btn-outline-warning' onClick={beautifyMultiple}>multiple XLF files</button>
+        <small className='text-white fst-italic ms-3'>questions? ask @johnrey</small>
       </nav>
 
       {multiple &&       
