@@ -23,7 +23,9 @@ const Beautifier = ({ file }) => {
     reader.onloadend = () => {
       try {
         const xmlContent = reader.result;
-        const formattedXML = xmlFormatter(xmlContent, { 
+        const x = xmlContent
+        const updatedXmlContent = x.replace('xml:space="preserve"', 'xml:space="default"')
+        const formattedXML = xmlFormatter(updatedXmlContent, { 
           indentation: '  ',
           collapseContent: true
         });
